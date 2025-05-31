@@ -10,7 +10,8 @@ export type AuthResponse = {
   token: string;
 };
 
-const API_URL = 'http://localhost:5000/api';
+// const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://vercel-backend-six-omega.vercel.app/api';
 
 // Helper function to handle API responses
 const handleResponse = async (response: Response) => {

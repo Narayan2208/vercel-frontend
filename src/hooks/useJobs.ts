@@ -44,8 +44,8 @@ export const useJobs = (employerId?: string) => {
                 }
 
                 const url = employerId
-                    ? `http://localhost:5000/api/jobs/employer/${employerId}`
-                    : 'http://localhost:5000/api/jobs';
+                    ? `https://vercel-backend-six-omega.vercel.app/api/jobs/employer/${employerId}`
+                    : 'https://vercel-backend-six-omega.vercel.app/api/jobs';
 
                 const response = await fetch(url, {
                     headers

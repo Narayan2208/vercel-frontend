@@ -98,7 +98,7 @@ const EmployerJobDetails: React.FC = () => {
 
         // Fetch job details
         const jobResponse = await fetch(
-          `http://localhost:5000/api/jobs/${id}`,
+          `https://vercel-backend-six-omega.vercel.app/api/jobs/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -117,7 +117,7 @@ const EmployerJobDetails: React.FC = () => {
 
         // Fetch applications
         const applicationsResponse = await fetch(
-          `http://localhost:5000/api/employer/jobs/${id}/applications`,
+          `https://vercel-backend-six-omega.vercel.app/api/employer/jobs/${id}/applications`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

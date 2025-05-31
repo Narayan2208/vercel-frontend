@@ -63,7 +63,7 @@ const JobDetails: React.FC = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:5000/api/jobs/${id}`, {
+        const response = await fetch(`https://vercel-backend-six-omega.vercel.app/api/jobs/${id}`, {
           headers: {
             Authorization: token ? `Bearer ${token}` : "",
           },
@@ -81,7 +81,7 @@ const JobDetails: React.FC = () => {
         // Track view if user is authenticated
         if (token) {
           try {
-            await fetch(`http://localhost:5000/api/jobs/${id}/view`, {
+            await fetch(`https://vercel-backend-six-omega.vercel.app/api/jobs/${id}/view`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -119,7 +119,7 @@ const JobDetails: React.FC = () => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/api/jobs/${id}/apply`,
+        `https://vercel-backend-six-omega.vercel.app/api/jobs/${id}/apply`,
         {
           method: "POST",
           headers: {
