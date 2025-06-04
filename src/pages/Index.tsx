@@ -47,7 +47,7 @@ const Index: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="text-4xl font-bold mb-4"
             >
-              Find Your Dream Job
+              Indonesia's Trusted Blue Collar Job Portal
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -55,8 +55,7 @@ const Index: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-muted-foreground mb-8"
             >
-              Explore thousands of job opportunities and find the perfect fit
-              for your skills and experience.
+              Find daily blue collar work that matches your skills or hire trusted workers for your projects
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}

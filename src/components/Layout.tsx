@@ -31,7 +31,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <footer className="py-6 px-6 border-t border-border/50">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} CareerScape. All rights reserved.
+            © {new Date().getFullYear()} MySakti. All rights reserved.
           </div>
           <div className="flex items-center space-x-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">

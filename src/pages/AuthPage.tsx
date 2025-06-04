@@ -43,7 +43,7 @@ const AuthPage: React.FC = () => {
               <p className="text-muted-foreground text-center mb-6">
                 {view === 'login' 
                   ? 'Sign in to your account to continue' 
-                  : 'Join CareerScape to find your dream job'}
+                  : 'Join MySakti to find your dream job'}
               </p>
 
               <motion.div
