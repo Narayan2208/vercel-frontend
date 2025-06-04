@@ -1,11 +1,10 @@
-
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, User, Briefcase, LogOut } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
-import { cn } from '@/lib/utils';
-
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, User, Briefcase, LogOut } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import { cn } from "@/lib/utils";
+import logo from "../assets/mysktilogo.png";
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,8 +18,8 @@ const Navbar: React.FC = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -39,19 +38,21 @@ const Navbar: React.FC = () => {
 
   const handleSignOut = async () => {
     await signOut();
-    navigate('/');
+    navigate("/");
   };
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Find Jobs', path: '/jobs' },
-    { name: 'Companies', path: '/companies' },
-    { name: 'About', path: '/about' },
+    { name: "Home", path: "/" },
+    { name: "Find Jobs", path: "/jobs" },
+    { name: "Companies", path: "/companies" },
+    { name: "About", path: "/about" },
   ];
 
   const renderAuthLinks = () => {
     if (isLoading) {
-      return <div className="h-10 w-20 bg-accent/10 animate-pulse rounded-lg"></div>;
+      return (
+        <div className="h-10 w-20 bg-accent/10 animate-pulse rounded-lg"></div>
+      );
     }
 
     if (user) {
@@ -63,10 +64,10 @@ const Navbar: React.FC = () => {
               className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-accent/10 transition-all duration-200"
             >
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                {user.name?.charAt(0) || user.email?.charAt(0) || 'U'}
+                {user.name?.charAt(0) || user.email?.charAt(0) || "U"}
               </div>
               <span className="hidden md:block font-medium">
-                {user.name || user.email?.split('@')[0]}
+                {user.name || user.email?.split("@")[0]}
               </span>
             </button>
 
@@ -81,11 +82,16 @@ const Navbar: React.FC = () => {
                 >
                   <div className="p-2">
                     <div className="px-3 py-2 text-sm font-medium text-muted-foreground">
-                      Signed in as <span className="text-foreground">{user.email}</span>
+                      Signed in as{" "}
+                      <span className="text-foreground">{user.email}</span>
                     </div>
                     <div className="h-px bg-border my-1"></div>
                     <Link
-                      to={user.role === 'employer' ? '/employer/dashboard' : '/dashboard'}
+                      to={
+                        user.role === "employer"
+                          ? "/employer/dashboard"
+                          : "/dashboard"
+                      }
                       className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-accent/10 transition-colors"
                     >
                       <User size={16} />
@@ -125,7 +131,7 @@ const Navbar: React.FC = () => {
         </Link>
         <Link
           to="/auth?view=register"
-          className="bg-primary text-primary-foreground text-sm font-medium px-4 py-2 rounded-lg hover:bg-primary/90 transition-all duration-200"
+          className="bg-[#ffa500] hover:bg-[#ffa500] text-primary-foreground text-sm font-medium px-4 py-2 rounded-lg transition-all duration-200"
         >
           Register
         </Link>
@@ -136,8 +142,10 @@ const Navbar: React.FC = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled ? 'bg-background/80 backdrop-blur-md border-b border-border/50 py-3' : 'py-5'
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-border/50 py-3"
+          : "py-5"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,8 +157,14 @@ const Navbar: React.FC = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-                  <Briefcase className="w-5 h-5 text-white" />
+                <div className="w-9 h-9 rounded-lg bg-[#ffa500] hover:bg-[#ffa500] flex items-center justify-center">
+                  {/* <Briefcase className="w-5 h-5 text-white" /> */}
+                  <img
+                    src={ logo}
+                    alt="MySakti Logo"
+                    className="absolute w-6 h-6 rounded-full"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
               </motion.div>
               <motion.span
@@ -159,7 +173,7 @@ const Navbar: React.FC = () => {
                 transition={{ duration: 0.3, delay: 0.1 }}
                 className="text-xl font-semibold"
               >
-                CareerScape
+                MySakti
               </motion.span>
             </Link>
 
@@ -169,10 +183,10 @@ const Navbar: React.FC = () => {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    'text-sm font-medium transition-colors',
+                    "text-sm font-medium transition-colors",
                     location.pathname === link.path
-                      ? 'text-foreground'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   {link.name}
@@ -191,7 +205,11 @@ const Navbar: React.FC = () => {
               className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/10 transition-colors"
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -201,7 +219,7 @@ const Navbar: React.FC = () => {
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="md:hidden bg-background border-b border-border/50"
@@ -212,10 +230,10 @@ const Navbar: React.FC = () => {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    'block px-3 py-2 rounded-lg text-base font-medium transition-colors',
+                    "block px-3 py-2 rounded-lg text-base font-medium transition-colors",
                     location.pathname === link.path
-                      ? 'bg-accent/10 text-foreground'
-                      : 'text-muted-foreground hover:bg-accent/5 hover:text-foreground'
+                      ? "bg-accent/10 text-foreground"
+                      : "text-muted-foreground hover:bg-accent/5 hover:text-foreground"
                   )}
                 >
                   {link.name}
@@ -225,7 +243,11 @@ const Navbar: React.FC = () => {
               {user ? (
                 <>
                   <Link
-                    to={user.role === 'employer' ? '/employer/dashboard' : '/dashboard'}
+                    to={
+                      user.role === "employer"
+                        ? "/employer/dashboard"
+                        : "/dashboard"
+                    }
                     className="block px-3 py-2 rounded-lg text-base font-medium text-muted-foreground hover:bg-accent/5 hover:text-foreground transition-colors"
                   >
                     Dashboard

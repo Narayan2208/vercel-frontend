@@ -300,7 +300,7 @@ const EmployerJobDetails: React.FC = () => {
                 <h2 className="font-semibold">
                   Candidates ({candidates.length})
                 </h2>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" className="bg-[#ffa500] hover:bg-[#ffa500]" size="sm">
                   View All
                 </Button>
               </div>

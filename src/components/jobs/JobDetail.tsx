@@ -308,7 +308,7 @@ const JobDetail: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleApply}
-                className="flex-1 sm:flex-none sm:w-auto px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors shadow-sm"
+                className="flex-1 sm:flex-none sm:w-auto px-6 py-3 rounded-xl bg-[#ffa500] hover:bg-[#ffa500] text-primary-foreground font-medium hover:bg-primary/90 transition-colors shadow-sm"
               >
                 Apply Now
               </motion.button>

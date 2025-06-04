@@ -152,7 +152,7 @@ const RegisterForm: React.FC = () => {
         </label>
       </div>
 
-      <Button type="submit" disabled={loading} className="w-full">
+      <Button type="submit" disabled={loading} className="w-full bg-[#ffa500] hover:bg-[#ffa500]">
         {loading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

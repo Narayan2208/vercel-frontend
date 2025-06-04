@@ -199,7 +199,7 @@ const EmployerDashboard: React.FC = () => {
             <div className="bg-background border border-border rounded-xl shadow-sm">
               <div className="p-4 border-b border-border flex justify-between items-center">
                 <h2 className="text-lg font-semibold">Recent Applications</h2>
-                <Button className="flex items-center gap-2">
+                <Button className="flex items-center gap-2 bg-[#ffa500] hover:bg-[#ffa500]">
                   <span>View All</span>
                   <ChevronRight className="w-4 h-4" />
                 </Button>
@@ -261,7 +261,7 @@ const EmployerDashboard: React.FC = () => {
                       </div>
                     </div>
                     <div className="flex gap-2 mt-3 justify-end">
-                      <Button className="flex items-center gap-2">
+                      <Button className="flex items-center gap-2 bg-[#ffa500] hover:bg-[#ffa500]">
                         View Application
                       </Button>
                       <Button
@@ -285,7 +285,7 @@ const EmployerDashboard: React.FC = () => {
               <div className="p-4 border-b border-border flex justify-between items-center">
                 <h2 className="font-semibold">Active Job Postings</h2>
                 <Button
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 bg-[#ffa500] hover:bg-[#ffa500]"
                   onClick={() => navigate("/employer/post-job")}
                 >
                   Post New Job

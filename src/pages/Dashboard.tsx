@@ -147,7 +147,7 @@ const Dashboard: React.FC = () => {
             <div className="bg-background border border-border rounded-xl shadow-sm">
               <div className="p-4 border-b border-border flex justify-between items-center">
                 <h2 className="text-lg font-semibold">Recommended Jobs</h2>
-                <Button className="flex items-center gap-2">
+                <Button className="flex items-center gap-2 bg-[#ffa500] hover:bg-[#ffa500]">
                   <span>View All</span>
                   <ChevronRight className="w-4 h-4" />
                 </Button>
@@ -199,7 +199,7 @@ const Dashboard: React.FC = () => {
                         <FileText className="w-4 h-4" />
                         <span>View Details</span>
                       </Button>
-                      <Button className="flex items-center gap-2">
+                      <Button className="flex items-center gap-2 bg-[#ffa500] hover:bg-[#ffa500]">
                         <BookmarkPlus className="w-4 h-4" />
                         <span>Save</span>
                       </Button>

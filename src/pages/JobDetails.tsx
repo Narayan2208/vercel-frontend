@@ -236,7 +236,7 @@ const JobDetails: React.FC = () => {
               </div>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button size="lg" className="min-w-[120px]">
+                  <Button size="lg" className="min-w-[120px] bg-[#ffa500] hover:bg-[#ffa500]">
                     Apply Now
                   </Button>
                 </DialogTrigger>

@@ -105,7 +105,7 @@ const JobSearch: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
                 <div className="md:col-span-5">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                    <Search className=" absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                     <Input
                       placeholder="Job title, keywords, or company"
                       value={searchQuery}
@@ -126,7 +126,7 @@ const JobSearch: React.FC = () => {
                   </div>
                 </div>
                 <div className="md:col-span-2">
-                  <Button className="w-full">Search</Button>
+                  <Button className="w-full bg-[#ffa500] hover:bg-[#ffa500]">Search</Button>
                 </div>
               </div>
             </div>
@@ -316,6 +316,7 @@ const JobSearch: React.FC = () => {
                                   size="sm"
                                   disabled={job.isApplied}
                                   onClick={() => navigate(`/jobs/${job._id}`)}
+                                  className="bg-[#ffa500] hover:bg-[#ffa500]"
                                 >
                                   {job.isApplied ? "Applied" : "Apply Now"}
                                 </Button>
