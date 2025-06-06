@@ -1,8 +1,9 @@
+import { API_URL } from "@/apisetting";
 import { getToken } from "./auth";
 
 // const API_URL = 'http://localhost:5000/api';
 // const API_URL = 'https://vercel-backend-six-omega.vercel.app/api';
-const API_URL = 'https://vercel-backend-nv3k.onrender.com/api';
+// const API_URL = 'https://vercel-backend-nv3k.onrender.com/api';
 
 
 export type Experience = {

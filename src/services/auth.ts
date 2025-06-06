@@ -1,3 +1,4 @@
+import { API_URL } from "@/apisetting";
 import { toast } from "@/hooks/use-toast";
 
 export type AuthResponse = {
@@ -12,7 +13,7 @@ export type AuthResponse = {
 
 // const API_URL = 'http://localhost:5000/api';
 // const API_URL = 'https://vercel-backend-six-omega.vercel.app/api';
-const API_URL = 'https://vercel-backend-nv3k.onrender.com/api';
+// const API_URL = 'https://vercel-backend-nv3k.onrender.com/api';
 
 // Helper function to handle API responses
 const handleResponse = async (response: Response) => {

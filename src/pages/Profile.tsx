@@ -36,6 +36,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "@/apisetting";
 
 interface SocialLinks {
   linkedin: string;
@@ -101,7 +102,8 @@ const Profile: React.FC = () => {
   const [profileData, setProfileData] =
     useState<ProfileData>(initialProfileData);
   const [newSkill, setNewSkill] = useState("");
-
+  // const API_URL = "https://vercel-backend-nv3k.onrender.com/api";
+  // const API_URL = "http://localhost:5000/api";
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -114,7 +116,7 @@ const Profile: React.FC = () => {
         return;
       }
 
-      const response = await fetch("https://vercel-backend-nv3k.onrender.com/api/profile", {
+      const response = await fetch(`${API_URL}/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -157,7 +159,7 @@ const Profile: React.FC = () => {
         return;
       }
 
-      const response = await fetch("https://vercel-backend-nv3k.onrender.com/api/profile", {
+      const response = await fetch(`${API_URL}/profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

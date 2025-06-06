@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
+import { API_URL } from '@/apisetting';
 
 interface Job {
     _id: string;
@@ -29,7 +30,8 @@ export const useJobs = (employerId?: string) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const { user } = useAuth();
-
+      // const API_URL = "https://vercel-backend-nv3k.onrender.com/api";
+//   const API_URL = "http://localhost:5000/api";
     useEffect(() => {
         const fetchJobs = async () => {
             try {
@@ -44,8 +46,8 @@ export const useJobs = (employerId?: string) => {
                 }
 
                 const url = employerId
-                    ? `https://vercel-backend-nv3k.onrender.com/api/jobs/employer/${employerId}`
-                    : 'https://vercel-backend-nv3k.onrender.com/api/jobs';
+                    ? `${API_URL}/jobs/employer/${employerId}`
+                    : `${API_URL}/jobs`;
 
                 const response = await fetch(url, {
                     headers

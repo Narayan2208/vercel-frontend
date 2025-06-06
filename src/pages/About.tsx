@@ -35,8 +35,9 @@ const About: React.FC = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-xl text-muted-foreground mb-8"
               >
-                MySakti is dedicated to revolutionizing the way people find their
-                dream careers and how companies discover exceptional talent.
+                MySakti is dedicated to revolutionizing the way people find
+                their dream careers and how companies discover exceptional
+                talent.
               </motion.p>
             </div>
           </div>
@@ -110,7 +111,9 @@ const About: React.FC = () => {
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 text-primary">
                     {feature.icon}
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {feature.title}
+                  </h3>
                   <p className="text-muted-foreground">{feature.description}</p>
                 </motion.div>
               ))}
@@ -155,7 +158,9 @@ const About: React.FC = () => {
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto text-primary">
                     {contact.icon}
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{contact.title}</h3>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {contact.title}
+                  </h3>
                   <p className="text-muted-foreground">{contact.info}</p>
                 </motion.div>
               ))}

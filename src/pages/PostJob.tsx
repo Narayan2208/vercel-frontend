@@ -7,12 +7,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { API_URL } from "@/apisetting";
 
 const PostJob: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
-
+    // const API_URL = "https://vercel-backend-nv3k.onrender.com/api";
+  // const API_URL = "http://localhost:5000/api";
   const [formData, setFormData] = useState({
     title: "",
     company: "",
@@ -40,7 +42,7 @@ const PostJob: React.FC = () => {
         employer: user?.id,
       });
 
-      const response = await fetch("https://vercel-backend-nv3k.onrender.com/api/jobs", {
+      const response = await fetch(`${API_URL}/jobs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

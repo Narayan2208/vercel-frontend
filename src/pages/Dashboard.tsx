@@ -229,7 +229,7 @@ const Dashboard: React.FC = () => {
                 ))}
               </div>
               <div className="p-4 border-t border-border">
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full bg-[#ffa500] hover:bg-[#ffa500] text-[#fff]">
                   View All Applications
                 </Button>
               </div>

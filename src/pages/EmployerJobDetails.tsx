@@ -25,6 +25,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { formatDistanceToNow } from "date-fns";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "@/hooks/use-toast";
+import { API_URL } from "@/apisetting";
 
 interface Job {
   _id: string;
@@ -86,7 +87,8 @@ const EmployerJobDetails: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [candidates, setCandidates] = useState<Application[]>([]);
   const [stats, setStats] = useState<JobStats | null>(null);
-
+    // const API_URL = "https://vercel-backend-nv3k.onrender.com/api";
+  // const API_URL = "http://localhost:5000/api";
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
@@ -98,7 +100,7 @@ const EmployerJobDetails: React.FC = () => {
 
         // Fetch job details
         const jobResponse = await fetch(
-          `https://vercel-backend-nv3k.onrender.com/api/jobs/${id}`,
+          `${API_URL}/jobs/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -117,7 +119,7 @@ const EmployerJobDetails: React.FC = () => {
 
         // Fetch applications
         const applicationsResponse = await fetch(
-          `https://vercel-backend-nv3k.onrender.com/api/employer/jobs/${id}/applications`,
+          `${API_URL}/employer/jobs/${id}/applications`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -300,7 +302,7 @@ const EmployerJobDetails: React.FC = () => {
                 <h2 className="font-semibold">
                   Candidates ({candidates.length})
                 </h2>
-                <Button variant="outline" className="bg-[#ffa500] hover:bg-[#ffa500]" size="sm">
+                <Button variant="outline" className="bg-[#ffa500] hover:bg-[#ffa500] text-[#fff]" size="sm">
                   View All
                 </Button>
               </div>
@@ -354,7 +356,7 @@ const EmployerJobDetails: React.FC = () => {
                       </div>
                     </div>
                     <div className="flex gap-2 mt-3">
-                      <Button size="sm" className="flex-1">
+                      <Button size="sm" className="flex-1 bg-[#ffa500] hover:bg-[#ffa500]">
                         View Profile
                       </Button>
                       <Button size="sm" variant="outline" className="flex-1">

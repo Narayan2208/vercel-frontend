@@ -26,12 +26,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import { useJobs } from "@/hooks/useJobs";
+import { useRecentApplications } from "@/hooks/useRecentApplications";
 import { formatDistanceToNow } from "date-fns";
 
 const EmployerDashboard: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { jobs, loading, error } = useJobs(user?.id);
+  const {
+    applications: recentApplications,
+    loading: applicationsLoading,
+    error: applicationsError,
+  } = useRecentApplications();
 
   useEffect(() => {
     // Redirect to job seeker dashboard if user is not an employer
@@ -40,49 +46,21 @@ const EmployerDashboard: React.FC = () => {
     }
   }, [user, navigate]);
 
-  // Mock data
-  const applications = [
-    {
-      id: 1,
-      name: "Alice Johnson",
-      position: "Software Engineer",
-      experience: "5+ years",
-      location: "New York, NY",
-      applied: "2 days agosss",
-      status: "New",
-      avatar: "https://randomuser.me/api/portraits/women/1.jpg",
-    },
-    {
-      id: 2,
-      name: "Bob Williams",
-      position: "Data Scientist",
-      experience: "3+ years",
-      location: "San Francisco, CA",
-      applied: "5 days ago",
-      status: "Reviewed",
-      avatar: "https://randomuser.me/api/portraits/men/2.jpg",
-    },
-    {
-      id: 3,
-      name: "Charlie Brown",
-      position: "Product Manager",
-      experience: "7+ years",
-      location: "Chicago, IL",
-      applied: "1 week ago",
-      status: "Interviewing",
-      avatar: "https://randomuser.me/api/portraits/men/3.jpg",
-    },
-    {
-      id: 4,
-      name: "Diana Miller",
-      position: "UX Designer",
-      experience: "4+ years",
-      location: "Los Angeles, CA",
-      applied: "2 weeks ago",
-      status: "Hired",
-      avatar: "https://randomuser.me/api/portraits/women/4.jpg",
-    },
-  ];
+  // Helper function to get status styles
+  const getStatusStyles = (status: string) => {
+    switch (status.toLowerCase()) {
+      case "pending":
+        return "bg-blue-50 text-blue-600";
+      case "reviewed":
+        return "bg-purple-50 text-purple-600";
+      case "accepted":
+        return "bg-green-50 text-green-600";
+      case "rejected":
+        return "bg-red-50 text-red-600";
+      default:
+        return "bg-gray-50 text-gray-600";
+    }
+  };
 
   return (
     <Layout>
@@ -205,75 +183,78 @@ const EmployerDashboard: React.FC = () => {
                 </Button>
               </div>
               <div className="divide-y divide-border">
-                {applications.map((application) => (
-                  <div
-                    key={application.id}
-                    className="p-4 hover:bg-accent/5 transition-colors"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="h-12 w-12 rounded-full overflow-hidden flex-shrink-0">
-                        <img
-                          src={application.avatar}
-                          alt={`${application.name}'s avatar`}
-                          className="h-full w-full object-cover"
-                          onError={(e) => {
-                            e.currentTarget.src =
-                              "https://via.placeholder.com/48";
-                          }}
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex justify-between">
-                          <h3 className="font-semibold truncate">
-                            {application.name}
-                          </h3>
-                          <span
-                            className={`text-xs px-2 py-1 rounded-full ${
-                              application.status === "New"
-                                ? "bg-blue-50 text-blue-600"
-                                : application.status === "Reviewed"
-                                ? "bg-purple-50 text-purple-600"
-                                : application.status === "Interviewing"
-                                ? "bg-amber-50 text-amber-600"
-                                : "bg-green-50 text-green-600"
-                            }`}
-                          >
-                            {application.status}
-                          </span>
-                        </div>
-                        <p className="text-sm font-medium mt-1">
-                          {application.position}
-                        </p>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-muted-foreground">
-                          <span className="flex items-center">
-                            <BookmarkPlus className="w-3 h-3 mr-1" />
-                            {application.experience}
-                          </span>
-                          <span className="flex items-center">
-                            <MapPin className="w-3 h-3 mr-1" />
-                            {application.location}
-                          </span>
-                          <span className="flex items-center">
-                            <Calendar className="w-3 h-3 mr-1" />
-                            {application.applied}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex gap-2 mt-3 justify-end">
-                      <Button className="flex items-center gap-2 bg-[#ffa500] hover:bg-[#ffa500]">
-                        View Application
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="flex items-center gap-2"
-                      >
-                        <MessageSquareText className="w-4 h-4" />
-                        <span>Contact</span>
-                      </Button>
-                    </div>
+                {applicationsLoading ? (
+                  <div className="p-8 flex justify-center">
+                    <Loader2 className="w-6 h-6 animate-spin" />
                   </div>
-                ))}
+                ) : applicationsError ? (
+                  <div className="p-8 text-center text-red-500">
+                    {applicationsError}
+                  </div>
+                ) : recentApplications.length === 0 ? (
+                  <div className="p-8 text-center text-muted-foreground">
+                    No applications yet
+                  </div>
+                ) : (
+                  recentApplications.map((application) => (
+                    <div
+                      key={application.id}
+                      className="p-4 hover:bg-accent/5 transition-colors"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                          <span className="text-lg font-medium text-primary">
+                            {(application.name || "A").charAt(0)}
+                          </span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex justify-between">
+                            <h3 className="font-semibold truncate">
+                              {application.name || "Anonymous Applicant"}
+                            </h3>
+                            <span
+                              className={`text-xs px-2 py-1 rounded-full ${getStatusStyles(
+                                application.status || "pending"
+                              )}`}
+                            >
+                              {application.status || "Pending"}
+                            </span>
+                          </div>
+                          <p className="text-sm font-medium mt-1">
+                            {application.position || "Position not specified"}
+                          </p>
+                          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-muted-foreground">
+                            <span className="flex items-center">
+                              <MapPin className="w-3 h-3 mr-1" />
+                              {application.location}
+                            </span>
+                            <span className="flex items-center">
+                              <Calendar className="w-3 h-3 mr-1" />
+                              {formatDistanceToNow(
+                                new Date(application.applied),
+                                {
+                                  addSuffix: true,
+                                }
+                              )}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex gap-2 mt-3 justify-end">
+                        <Button className="flex items-center gap-2 bg-[#ffa500] hover:bg-[#ffa500]">
+                          View Application
+                        </Button>
+                        <Button
+                          variant="outline"
+                          className="flex items-center gap-2"
+                        >
+                          <MessageSquareText className="w-4 h-4" />
+                          <span>Contact</span>
+                        </Button>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </div>

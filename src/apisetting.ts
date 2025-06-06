@@ -1,0 +1,2 @@
+const environment :any= "prod"; // Default to 'dev' if not set
+export const API_URL = environment === "dev" ? "http://localhost:5000/api" : "https://vercel-backend-nv3k.onrender.com/api"; // Change this to your backend URL

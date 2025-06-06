@@ -19,6 +19,9 @@ import Profile from "./pages/Profile";
 import JobDetails from "./pages/JobDetails";
 import EmployerJobDetails from "./pages/EmployerJobDetails";
 import About from "./pages/About";
+import EmployerAnalytics from "./pages/employer/EmployerAnalytics";
+import EmployerJobs from "./pages/employer/EmployerJobs";
+import JobAnalytics from "./pages/employer/JobAnalytics";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +87,30 @@ const App = () => (
               <Route
                 path="/employer/jobs/:id"
                 element={<EmployerJobDetails />}
+              />
+              <Route
+                path="/employer/analytics"
+                element={
+                  <ProtectedRoute allowedRoles={["employer"]}>
+                    <EmployerAnalytics />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/employer/jobs"
+                element={
+                  <ProtectedRoute requiredRole="employer">
+                    <EmployerJobs />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/employer/jobs/:id/analytics"
+                element={
+                  <ProtectedRoute requiredRole="employer">
+                    <JobAnalytics />
+                  </ProtectedRoute>
+                }
               />
 
               {/* Legacy Routes - Redirects to new structured routes */}

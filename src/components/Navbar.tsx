@@ -41,12 +41,30 @@ const Navbar: React.FC = () => {
     navigate("/");
   };
 
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "Find Jobs", path: "/jobs" },
-    // { name: "Companies", path: "/companies" },
-    { name: "About", path: "/about" },
-  ];
+  const navLinks = React.useMemo(() => {
+    if (!user) {
+      return [
+        { name: "Home", path: "/" },
+        { name: "Find Jobs", path: "/jobs" },
+        { name: "About", path: "/about" },
+      ];
+    }
+
+    // Different navigation items based on user role
+    return user.role === "employer"
+      ? [
+          { name: "Dashboard", path: "/employer/dashboard" },
+          { name: "Job Postings", path: "/employer/jobs" },
+          { name: "Analytics", path: "/employer/analytics" },
+          // { name: "Candidates", path: "/employer/candidates" },
+        ]
+      : [
+          { name: "Home", path: "/" },
+          { name: "Find Jobs", path: "/jobs" },
+          // { name: "My Applications", path: "/applications" },
+          { name: "About", path: "/about" },
+        ];
+  }, [user]);
 
   const renderAuthLinks = () => {
     if (isLoading) {
@@ -160,7 +178,7 @@ const Navbar: React.FC = () => {
                 <div className="w-9 h-9 rounded-lg bg-[#ffa500] hover:bg-[#ffa500] flex items-center justify-center">
                   {/* <Briefcase className="w-5 h-5 text-white" /> */}
                   <img
-                    src={ logo}
+                    src={logo}
                     alt="MySakti Logo"
                     className="absolute w-6 h-6 rounded-full"
                     style={{ objectFit: "cover" }}

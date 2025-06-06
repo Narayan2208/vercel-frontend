@@ -27,6 +27,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import { API_URL } from "@/apisetting";
 
 interface Job {
   _id: string;
@@ -57,14 +58,15 @@ const JobDetails: React.FC = () => {
   const [isApplying, setIsApplying] = useState(false);
   const [coverLetter, setCoverLetter] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
-
+    // const API_URL = "https://vercel-backend-nv3k.onrender.com/api";
+  // const API_URL = "http://localhost:5000/api";
   useEffect(() => {
     const fetchJob = async () => {
       try {
         setLoading(true);
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `https://vercel-backend-nv3k.onrender.com/api/jobs/${id}`,
+          `${API_URL}/jobs/${id}`,
           {
             headers: {
               Authorization: token ? `Bearer ${token}` : "",
@@ -85,7 +87,7 @@ const JobDetails: React.FC = () => {
         if (token) {
           try {
             await fetch(
-              `https://vercel-backend-nv3k.onrender.com/api/jobs/${id}/view`,
+              `${API_URL}/jobs/${id}/view`,
               {
                 method: "POST",
                 headers: {
@@ -125,7 +127,7 @@ const JobDetails: React.FC = () => {
       });
 
       const response = await fetch(
-        `https://vercel-backend-nv3k.onrender.com/api/jobs/${id}/apply`,
+        `${API_URL}/jobs/${id}/apply`,
         {
           method: "POST",
           headers: {
@@ -263,7 +265,7 @@ const JobDetails: React.FC = () => {
                         Your application has been successfully submitted. The
                         employer will review it and get back to you soon.
                       </DialogDescription>
-                      <Button onClick={() => navigate("/jobs")}>
+                      <Button onClick={() => navigate("/jobs")} className="bg-[#ffa500] hover:bg-[#ffa500]">
                         Browse More Jobs
                       </Button>
                     </div>
