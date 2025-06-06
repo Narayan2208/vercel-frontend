@@ -40,7 +40,7 @@ const PostJob: React.FC = () => {
         employer: user?.id,
       });
 
-      const response = await fetch("https://vercel-backend-six-omega.vercel.app/api/jobs", {
+      const response = await fetch("https://vercel-backend-nv3k.onrender.com/api/jobs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -222,11 +222,12 @@ const PostJob: React.FC = () => {
             <Button
               type="button"
               variant="outline"
+              className="hover:bg-[#ffa500]"
               onClick={() => navigate("/employer/dashboard")}
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} className="bg-[#ffa500] hover:bg-[#ffa500]">
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

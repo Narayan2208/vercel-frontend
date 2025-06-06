@@ -165,7 +165,7 @@ const JobDetail: React.FC = () => {
       >
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center text-muted-foreground hover:text-foreground mb-6 group transition-colors"
+          className="flex items-center text-muted-foreground hover:text-foreground mb-6 group transition-colors bg-[#ffa500] hover:bg-[#ffa500]"
         >
           <ArrowLeft className="h-4 w-4 mr-1 group-hover:-translate-x-1 transition-transform" />
           Back to jobs

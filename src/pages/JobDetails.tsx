@@ -63,11 +63,14 @@ const JobDetails: React.FC = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem("token");
-        const response = await fetch(`https://vercel-backend-six-omega.vercel.app/api/jobs/${id}`, {
-          headers: {
-            Authorization: token ? `Bearer ${token}` : "",
-          },
-        });
+        const response = await fetch(
+          `https://vercel-backend-nv3k.onrender.com/api/jobs/${id}`,
+          {
+            headers: {
+              Authorization: token ? `Bearer ${token}` : "",
+            },
+          }
+        );
 
         if (!response.ok) {
           const data = await response.json();
@@ -81,13 +84,16 @@ const JobDetails: React.FC = () => {
         // Track view if user is authenticated
         if (token) {
           try {
-            await fetch(`https://vercel-backend-six-omega.vercel.app/api/jobs/${id}/view`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            });
+            await fetch(
+              `https://vercel-backend-nv3k.onrender.com/api/jobs/${id}/view`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
           } catch (error) {
             console.error("Error tracking view:", error);
           }
@@ -119,7 +125,7 @@ const JobDetails: React.FC = () => {
       });
 
       const response = await fetch(
-        `https://vercel-backend-six-omega.vercel.app/api/jobs/${id}/apply`,
+        `https://vercel-backend-nv3k.onrender.com/api/jobs/${id}/apply`,
         {
           method: "POST",
           headers: {
@@ -178,14 +184,17 @@ const JobDetails: React.FC = () => {
   if (error || !job) {
     return (
       <Layout>
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 ">
           <div className="max-w-4xl mx-auto text-center">
             <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
             <h1 className="text-2xl font-bold mb-2">Job Not Found</h1>
             <p className="text-muted-foreground mb-6">
               The job you're looking for doesn't exist or has been removed.
             </p>
-            <Button onClick={() => navigate("/jobs")}>
+            <Button
+              onClick={() => navigate("/jobs")}
+              className="bg-[#ffa500] hover:bg-[#ffa500]"
+            >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Jobs
             </Button>
@@ -197,10 +206,10 @@ const JobDetails: React.FC = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 pt-24 pb-8">
         <Button
           variant="ghost"
-          className="mb-6"
+          className="mb-6 bg-[#ffa500] hover:bg-[#ffa500] text-white"
           onClick={() => navigate("/jobs")}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -236,7 +245,10 @@ const JobDetails: React.FC = () => {
               </div>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button size="lg" className="min-w-[120px] bg-[#ffa500] hover:bg-[#ffa500]">
+                  <Button
+                    size="lg"
+                    className="min-w-[120px] bg-[#ffa500] hover:bg-[#ffa500]"
+                  >
                     Apply Now
                   </Button>
                 </DialogTrigger>
@@ -279,7 +291,7 @@ const JobDetails: React.FC = () => {
                         <Button
                           onClick={handleApply}
                           disabled={isApplying}
-                          className="w-full"
+                          className="w-full bg-[#ffa500] hover:bg-[#ffa500]"
                         >
                           {isApplying ? (
                             <>

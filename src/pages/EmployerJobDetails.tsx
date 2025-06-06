@@ -98,7 +98,7 @@ const EmployerJobDetails: React.FC = () => {
 
         // Fetch job details
         const jobResponse = await fetch(
-          `https://vercel-backend-six-omega.vercel.app/api/jobs/${id}`,
+          `https://vercel-backend-nv3k.onrender.com/api/jobs/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -117,7 +117,7 @@ const EmployerJobDetails: React.FC = () => {
 
         // Fetch applications
         const applicationsResponse = await fetch(
-          `https://vercel-backend-six-omega.vercel.app/api/employer/jobs/${id}/applications`,
+          `https://vercel-backend-nv3k.onrender.com/api/employer/jobs/${id}/applications`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -171,7 +171,7 @@ const EmployerJobDetails: React.FC = () => {
             <p className="text-muted-foreground mb-6">
               {error || "Job not found"}
             </p>
-            <Button onClick={() => navigate("/employer/dashboard")}>
+            <Button onClick={() => navigate("/employer/dashboard")} className="bg-[#ffa500] hover:bg-[#ffa500]">
               Back to Dashboard
             </Button>
           </div>

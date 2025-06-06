@@ -114,7 +114,7 @@ const Profile: React.FC = () => {
         return;
       }
 
-      const response = await fetch("https://vercel-backend-six-omega.vercel.app/api/profile", {
+      const response = await fetch("https://vercel-backend-nv3k.onrender.com/api/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -157,7 +157,7 @@ const Profile: React.FC = () => {
         return;
       }
 
-      const response = await fetch("https://vercel-backend-six-omega.vercel.app/api/profile", {
+      const response = await fetch("https://vercel-backend-nv3k.onrender.com/api/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

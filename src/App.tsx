@@ -18,6 +18,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import JobDetails from "./pages/JobDetails";
 import EmployerJobDetails from "./pages/EmployerJobDetails";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/jobs" element={<JobSearch />} />
               <Route path="/jobs/:id" element={<JobDetails />} />
+              <Route path="/about" element={<About />} />
 
               {/* Job Seeker Routes */}
               <Route
