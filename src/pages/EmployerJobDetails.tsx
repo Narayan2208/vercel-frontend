@@ -317,14 +317,14 @@ const EmployerJobDetails: React.FC = () => {
                       <Avatar className="h-10 w-10">
                         <div className="h-full w-full rounded-full bg-primary/10 flex items-center justify-center">
                           <span className="text-primary font-medium">
-                            {candidate.applicant.fullName.charAt(0)}
+                            {candidate?.applicant?.fullName.charAt(0) || "No Name Found"}
                           </span>
                         </div>
                       </Avatar>
                       <div className="flex-1">
                         <div className="flex justify-between">
                           <h3 className="font-medium">
-                            {candidate.applicant.fullName}
+                            {candidate?.applicant?.fullName}
                           </h3>
                           <span
                             className={`text-xs px-2 py-1 rounded-full ${
@@ -337,12 +337,12 @@ const EmployerJobDetails: React.FC = () => {
                                 : "bg-red-50 text-red-600"
                             }`}
                           >
-                            {candidate.status.charAt(0).toUpperCase() +
-                              candidate.status.slice(1)}
+                            {candidate?.status?.charAt(0).toUpperCase() +
+                              candidate?.status?.slice(1)}
                           </span>
                         </div>
                         <div className="text-sm text-muted-foreground mt-1">
-                          {candidate.applicant.experience[0]?.position ||
+                          {candidate?.applicant?.experience[0]?.position ||
                             "No experience"}{" "}
                           •{" "}
                           {candidate.applicant.location ||

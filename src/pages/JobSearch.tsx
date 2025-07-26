@@ -246,7 +246,7 @@ const JobSearch: React.FC = () => {
                       >
                         <div className="flex items-start gap-4">
                           <div className="p-3 bg-primary/10 rounded-xl">
-                            <BriefcaseIcon className="w-6 h-6 text-primary" />
+                            <BriefcaseIcon className="w-6 h-6 text-primary" color="#FFA500" />
                           </div>
                           <div className="flex-1">
                             <div className="flex justify-between items-start">
@@ -306,7 +306,7 @@ const JobSearch: React.FC = () => {
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="text-primary"
+                                  className="text-gray-600 font-semibold hover:bg-background"
                                   onClick={() => navigate(`/jobs/${job._id}`)}
                                 >
                                   View Details

@@ -124,7 +124,7 @@ const Dashboard: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="border border-border rounded-lg p-3 flex items-start gap-3 bg-background">
                   <div className="p-2 bg-primary/10 rounded-lg text-primary">
-                    <BriefcaseIcon className="w-5 h-5" />
+                    <BriefcaseIcon className="w-5 h-5" color="#FFA500"/>
                   </div>
                   <div>
                     <h3 className="font-medium">Complete your profile</h3>
